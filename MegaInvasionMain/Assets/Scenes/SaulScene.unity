@@ -206,7 +206,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 148006029}
-  - component: {fileID: 148006030}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -233,19 +232,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &148006030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 148006028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f21e14537f03b2d4e9a8c50b40f7f095, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  song: {fileID: 0}
 --- !u!1 &159628208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,6 +1070,9 @@ MonoBehaviour:
   speed: 15
   rotationSpeed: 20
   animator: {fileID: 1099591801}
+  isJumping: 0
+  isGrounded: 0
+  jumpSpeed: 0
 --- !u!1 &765272851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,7 +1138,7 @@ Transform:
   m_GameObject: {fileID: 765272851}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.082536444, z: -0, w: 0.9965881}
-  m_LocalPosition: {x: -493.59842, y: -198.21698, z: -11.514628}
+  m_LocalPosition: {x: -85.44843, y: -286.017, z: -11.514628}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2123,7 +2112,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 148006030}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -2831,7 +2820,7 @@ Transform:
   m_GameObject: {fileID: 1850691643}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.082536444, z: -0, w: 0.9965881}
-  m_LocalPosition: {x: -492.75842, y: -197.20699, z: -10.83721}
+  m_LocalPosition: {x: -84.60843, y: -285.007, z: -10.83721}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2892,7 +2881,7 @@ GameObject:
   - component: {fileID: 1997541132}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Plane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

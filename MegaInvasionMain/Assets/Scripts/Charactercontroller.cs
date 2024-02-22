@@ -8,6 +8,9 @@ public class SimpleCharacterController : MonoBehaviour
     public float rotationSpeed = 200f; //Rotation speed
     public float jumpForce = 200f;
     [SerializeField] Animator animator;
+    public bool isJumping = false;
+    public bool isGrounded = true;
+    public float jumpSpeed;
 
     private Rigidbody rb;
 
@@ -27,10 +30,14 @@ public class SimpleCharacterController : MonoBehaviour
 
         UpdateAnimation();
 
+<<<<<<< Updated upstream
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
+=======
+        jump();
+>>>>>>> Stashed changes
     }
 
     void MoveCharacter(float horizontal, float vertical)
@@ -57,5 +64,43 @@ public class SimpleCharacterController : MonoBehaviour
         animator.SetFloat("xSpeed", InputManager.movementInput.x);
         animator.SetFloat("zSpeed", InputManager.movementInput.y);
       
+    }
+    public void jump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        {
+            isGrounded = false;
+            animator.SetBool("IsJumpingAnim", true);
+            animator.SetBool("IsFallingAnim",true);
+            animator.SetBool("IsGroundedAnim",true);
+            rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+              
+          
+        }
+        else if(Input.GetButtonUp("Jump"))
+        {
+            animator.SetBool("IsJumpingAnim", false);
+        
+        }
+
+
+        
+            
+
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Plane")
+        {
+            isGrounded = true;
+        }
+       /* else if(collision.gameObject.name != "Plane")
+        {
+            animator.SetBool("IsJumpingAnim", false);
+            animator.SetBool("IsFallingAnim", false);
+            animator.SetBool("IsGroundedAnim", false);
+        }
+       */
     }
 }
