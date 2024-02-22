@@ -6,6 +6,7 @@ public class SimpleCharacterController : MonoBehaviour
 {
     public float speed = 150f; //Movement speed
     public float rotationSpeed = 200f; //Rotation speed
+    public float jumpForce = 200f;
     [SerializeField] Animator animator;
 
     private Rigidbody rb;
@@ -25,6 +26,11 @@ public class SimpleCharacterController : MonoBehaviour
         RotateCharacter(horizontalInput);
 
         UpdateAnimation();
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
     }
 
     void MoveCharacter(float horizontal, float vertical)
@@ -38,6 +44,12 @@ public class SimpleCharacterController : MonoBehaviour
         float rotation = horizontal * rotationSpeed * Time.deltaTime;
         Quaternion deltaRotation = Quaternion.Euler(Vector3.up * rotation);
         rb.MoveRotation(rb.rotation * deltaRotation);
+    }
+
+    void Jump()
+    {
+        rb.AddForce(Vector2.up * jumpForce * 1.5f);
+        
     }
 
     public void UpdateAnimation()
