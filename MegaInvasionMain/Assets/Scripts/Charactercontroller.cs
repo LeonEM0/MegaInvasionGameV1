@@ -30,14 +30,14 @@ public class SimpleCharacterController : MonoBehaviour
 
         UpdateAnimation();
 
-<<<<<<< Updated upstream
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
-=======
+
+        //if (Input.GetButtonDown("Jump"))
+        //{
+        //    Jump();
+        //}
+
         jump();
->>>>>>> Stashed changes
+
     }
 
     void MoveCharacter(float horizontal, float vertical)
@@ -53,11 +53,11 @@ public class SimpleCharacterController : MonoBehaviour
         rb.MoveRotation(rb.rotation * deltaRotation);
     }
 
-    void Jump()
-    {
-        rb.AddForce(Vector2.up * jumpForce * 1.5f);
+    //void Jump()
+    //{
+    //    rb.AddForce(Vector2.up * jumpForce * 1.5f);
         
-    }
+    //}
 
     public void UpdateAnimation()
     {
