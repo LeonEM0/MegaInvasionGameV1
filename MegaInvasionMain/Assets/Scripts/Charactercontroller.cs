@@ -5,6 +5,8 @@ using UnityEngine;
 public class SimpleCharacterController : MonoBehaviour
 {
     public float speed = 150f; //Movement speed
+    public float runspeed = 50f;
+    public float currentspeed;
     public float rotationSpeed = 200f; //Rotation speed
     public float jumpForce = 200f;
     [SerializeField] Animator animator;
@@ -25,8 +27,7 @@ public class SimpleCharacterController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         MoveCharacter(horizontalInput, verticalInput);
-
-        RotateCharacter(horizontalInput);
+       // RotateCharacter(horizontalInput);
 
         UpdateAnimation();
 
@@ -36,16 +37,36 @@ public class SimpleCharacterController : MonoBehaviour
         //    Jump();
         //}
 
-        jump();
+        Jump();
+       // Debug.Log("HORIZONTAL"+horizontalInput+"VERTICAL"+verticalInput); print coordinates
+       
 
     }
 
     void MoveCharacter(float horizontal, float vertical)
     {
-        Vector3 movement = new Vector3(horizontal, 0f, vertical) * speed * Time.deltaTime;
-        rb.MovePosition(transform.position + transform.TransformDirection(movement));
-    }
+       
 
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            currentspeed = speed + runspeed;
+            Vector3 movement = new Vector3(horizontal, 0f, vertical) * currentspeed * Time.deltaTime;
+            rb.MovePosition(transform.position + transform.TransformDirection(movement));
+        }
+        else
+        {
+            
+            Vector3 movement = new Vector3(horizontal, 0f, vertical) * speed * Time.deltaTime;
+            rb.MovePosition(transform.position + transform.TransformDirection(movement));
+
+        }
+       
+
+      
+    }
+  
+ 
     void RotateCharacter(float horizontal)
     {
         float rotation = horizontal * rotationSpeed * Time.deltaTime;
@@ -65,7 +86,7 @@ public class SimpleCharacterController : MonoBehaviour
         animator.SetFloat("zSpeed", InputManager.movementInput.y);
       
     }
-    public void jump()
+    public void Jump()
     {
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
