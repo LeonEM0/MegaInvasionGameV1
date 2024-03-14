@@ -138,7 +138,7 @@ public class SimpleCharacterController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Plane")
+        if(collision.gameObject.CompareTag("Plane"))
         {
             isGrounded = true;
         }
@@ -151,3 +151,8 @@ public class SimpleCharacterController : MonoBehaviour
        */
     }
 }
+// Jump fixed*
+// animation of the player when hes rotating 
+// fix the shooting
+// add object pooling for the bullets player and enemies
+// fix the navmeshagentsurface
