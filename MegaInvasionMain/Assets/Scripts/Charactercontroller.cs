@@ -21,6 +21,8 @@ public class SimpleCharacterController : MonoBehaviour
     public bool isJumping = false;
     public bool isGrounded = true;
     public float jumpSpeed;
+    public float boostTimer;
+    public bool isBoosting;
 
     private Rigidbody rb;
     //aiming
@@ -67,12 +69,34 @@ public class SimpleCharacterController : MonoBehaviour
         //}
 
         Jump();
-       // Debug.Log("HORIZONTAL"+horizontalInput+"VERTICAL"+verticalInput); print coordinates
-       
+        // Debug.Log("HORIZONTAL"+horizontalInput+"VERTICAL"+verticalInput); print coordinates
+
+        if (isBoosting)
+        {
+            boostTimer += Time.deltaTime;
+            if (boostTimer <= 3)
+            {
+                speed = 20;
+                boostTimer = 0;
+                isBoosting = false;
+            }
+        }
 
     }
 
-    void MoveCharacter(float horizontal, float vertical)
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "PowerUp")
+        {
+            //isBoosting = true;
+            speed = 100;
+
+        }
+    }
+
+void MoveCharacter(float horizontal, float vertical)
     {
        
 
