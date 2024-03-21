@@ -27,6 +27,7 @@ public class SimpleCharacterController : MonoBehaviour
     public Transform aimPos;
     [SerializeField] float aimSmoothSpeed =20;
     [SerializeField] LayerMask aimMask;
+    public float rayDistance = 30f; // variable to see the path of the ray to shoot bullets
 
 
     void Start()
@@ -48,6 +49,8 @@ public class SimpleCharacterController : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimMask))
         {
             aimPos.position = Vector3.Lerp(aimPos.position, hit.point, aimSmoothSpeed * Time.deltaTime);
+            Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.green);
+
         }
 
 
@@ -152,7 +155,8 @@ public class SimpleCharacterController : MonoBehaviour
     }
 }
 // Jump fixed*
-// animation of the player when hes rotating 
+// fix the navmeshagentsurface *
 // fix the shooting
+// animation of the player when hes rotating 
+// audio manager 
 // add object pooling for the bullets player and enemies
-// fix the navmeshagentsurface

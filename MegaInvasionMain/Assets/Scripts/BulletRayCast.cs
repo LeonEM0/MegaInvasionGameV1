@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletRayCast : MonoBehaviour
+public class BulletRayCast : MonoBehaviour // This are the bullets for the turrets
 {
     // Start is called before the first frame update
     Transform player;
@@ -23,7 +23,7 @@ public class BulletRayCast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* RaycastHit hit;
+         RaycastHit hit;
 
          Ray ray = new Ray(transform.position, player.transform.position *Time.deltaTime);
          Debug.DrawRay(ray.origin, ray.direction * raygizmo, Color.green); //we multiply by the scalar to see the direction of the ray
@@ -33,7 +33,7 @@ public class BulletRayCast : MonoBehaviour
                     Debug.DrawRay(ray.origin, ray.direction * raygizmo, Color.green); //we multiply by the scalar to see the direction of the ray
 
          }
-        */
+        
         dist = Vector3.Distance(player.position, transform.position);
 
         if(dist<=detect_player && Time.time >= nextFire)
