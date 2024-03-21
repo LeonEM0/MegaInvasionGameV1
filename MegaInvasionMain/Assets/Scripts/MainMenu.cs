@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+
     public void GameScene()
     {
         PlayGame();
@@ -31,5 +32,13 @@ public class MainMenu : MonoBehaviour
 
 
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Backspace))
+        {
+            PlayGame();
+        }
     }
 }
