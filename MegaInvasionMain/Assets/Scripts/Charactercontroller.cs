@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System.IO;
 
 public class SimpleCharacterController : MonoBehaviour
 {
@@ -151,11 +152,7 @@ void MoveCharacter(float horizontal, float vertical)
               
           
         }
-        else if(Input.GetButtonUp("Jump"))
-        {
-            animator.SetBool("IsJumpingAnim", false);
-        
-        }
+     
 
 
         
@@ -168,15 +165,46 @@ void MoveCharacter(float horizontal, float vertical)
         if(collision.gameObject.CompareTag("Plane"))
         {
             isGrounded = true;
-        }
-       /* else if(collision.gameObject.name != "Plane")
-        {
             animator.SetBool("IsJumpingAnim", false);
             animator.SetBool("IsFallingAnim", false);
             animator.SetBool("IsGroundedAnim", false);
+
+
         }
-       */
+
+        if (collision.gameObject.CompareTag("Trampoline"))
+        {
+            isGrounded = false;
+            animator.SetBool("IsJumpingAnim", true);
+            animator.SetBool("IsFallingAnim", true);
+            animator.SetBool("IsGroundedAnim", true);
+
+        }
+
+
+
+
+        /* else if(collision.gameObject.name != "Plane")
+         {
+             animator.SetBool("IsJumpingAnim", false);
+             animator.SetBool("IsFallingAnim", false);
+             animator.SetBool("IsGroundedAnim", false);
+         }
+        */
     }
+   /* private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Trampoline"))
+        {
+            animator.SetBool("IsJumpingAnim",false);
+            animator.SetBool("IsFallingAnim", false);
+            animator.SetBool("IsGroundedAnim", false);
+        }
+    }
+   */
+
+
+
 }
 // Jump fixed*
 // fix the navmeshagentsurface *
