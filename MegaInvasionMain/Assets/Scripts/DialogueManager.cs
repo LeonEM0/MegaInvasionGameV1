@@ -2,150 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private GameObject dialogueParent;
-    [SerializeField] private TMP_Text dialogueText;
-    [SerializeField] private Button option1Button;
-    [SerializeField] private Button option2Button;
 
-    [SerializeField] private float typingSpeed = 0.05f;
-    [SerializeField] private float turnSpeed = 2f;
+    public TextMeshProUGUI textComponent;
+    public string[] lines;
+    public float textSpeed;
 
-    private List<dialogueString> dialogueList;
-
-    [Header("Player")]
-    [SerializeField] private SimpleCharacterController thirdPersonController;
-    private Transform playerCamera;
-
-    private int currentDialogueIndex = 0;
-
-    private void Start()
+    private int index;
+    // Start is called before the first frame update
+    void Start()
     {
-        dialogueParent.SetActive(false);
-        playerCamera = Camera.main.transform;
+        textComponent.text = string.Empty;
+        StartDialogue();
     }
 
-    public void DialogueStart(List<dialogueString> textToPrint, Transform NPC)
+    // Update is called once per frame
+    void Update()
     {
-        dialogueParent.SetActive(true);
-        thirdPersonController.enabled = false;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        StartCoroutine(TurnCameraTowardNPC(NPC));
-
-        dialogueList = textToPrint;
-        currentDialogueIndex = 0;
-
-        DisableButtons();
-
-        StartCoroutine(PrintDialogue());
-    }
-
-    private void DisableButtons()
-    {
-        option1Button.interactable = false;
-        option2Button.interactable = false;
-
-        option1Button.GetComponentInChildren<TMP_Text>().text = "";
-        option2Button.GetComponentInChildren<TMP_Text>().text = "";
-    }
-
-    private IEnumerator TurnCameraTowardNPC(Transform NPC)
-    {
-        Quaternion startRotation = playerCamera.rotation;
-        Quaternion targetRotation = Quaternion.LookRotation(NPC.position - playerCamera.position);
-
-        float elapsedTime = 0f;
-        while(elapsedTime < 1f)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            playerCamera.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime);
-            elapsedTime += Time.deltaTime * turnSpeed;
-            yield return null;
-        }
-
-        playerCamera.rotation = targetRotation;
-    }
-
-    private bool optionSelected = false;
-    private IEnumerator PrintDialogue()
-    {
-        while (currentDialogueIndex < dialogueList.Count)
-        {
-            dialogueString line = dialogueList[currentDialogueIndex];
-
-            line.startDialogueEvent?.Invoke();
-
-            if (line.isQuestion)
+            if(textComponent.text == lines[index])
             {
-                yield return StartCoroutine(TypeText(line.text));
-
-                option1Button.interactable = true;
-                option2Button.interactable = true;
-
-                option1Button.GetComponentInChildren<TMP_Text>().text = line.answerOption1;
-                option2Button.GetComponentInChildren<TMP_Text>().text = line.answerOption2;
-
-                option1Button.onClick.AddListener(() => HandleOptionSelected(line.option1IndexJump));
-                option2Button.onClick.AddListener(() => HandleOptionSelected(line.option2IndexJump));
-
-                yield return new WaitUntil(() => optionSelected);
+                NextLine();
             }
             else
             {
-                yield return StartCoroutine(TypeText(line.text));
+                StopAllCoroutines();
+                textComponent.text = lines[index];
             }
-
-            line.startDialogueEvent?.Invoke();
-
-            optionSelected = false;
         }
-
-        DialogueStop();
     }
 
-    private void HandleOptionSelected(int indexJump)
+    void StartDialogue()
     {
-        optionSelected = true;
-        DisableButtons();
-
-        currentDialogueIndex = indexJump;
+        index = 0;
+        StartCoroutine(TypeLine());
     }
 
-    private IEnumerator TypeText(string text)
+    IEnumerator TypeLine()
     {
-        dialogueText.text = "";
-        foreach(char letter in text.ToCharArray())
+        foreach (char c in lines[index].ToCharArray())
         {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            textComponent.text += c;
+            yield return new WaitForSeconds(textSpeed);
         }
-        if (!dialogueList[currentDialogueIndex].isQuestion)
-        {
-            yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-        }
-
-        if (dialogueList[currentDialogueIndex].isEnd)
-            DialogueStop();
-
-        currentDialogueIndex++;
     }
 
-    private void DialogueStop()
+    void NextLine()
     {
-        StopAllCoroutines();
-        dialogueText.text = "";
-        dialogueParent.SetActive(false);
-
-        
-        thirdPersonController.enabled = true;
-        
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
+        if(index < lines.Length - 1)
+        {
+            index++;
+            textComponent.text = string.Empty;
+            StartCoroutine(TypeLine());
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
