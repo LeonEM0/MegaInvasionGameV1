@@ -17,6 +17,7 @@ public class AudioManagerSingleton : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 

@@ -1,67 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponManager : MonoBehaviour
 {
-    [Header("Fire Rate")]
 
-    [SerializeField] float fireRate;
-    float fireRateTimer;
-    [SerializeField] bool semiAuto;
     
 
     [Header("Bullet Properties")]
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform bulletSpawnPoint;
-    [SerializeField] float bulletVelocity;
-    [SerializeField] int bulletsPerShot;
-     SimpleCharacterController character;
+    SimpleCharacterController character;
+
 
     [Header("audio")] 
    [SerializeField] AudioClip gunshot;
     [SerializeField] AudioSource audioSource;
 
+    private Ray ray; 
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        fireRateTimer = fireRate;
+        
         character = GetComponentInParent<SimpleCharacterController>();
         
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (ShouldFire()) Fire();
-    }
-    bool ShouldFire()
-    {
-        fireRateTimer += Time.deltaTime;
-        if (fireRateTimer < fireRate) return false;
-        if (semiAuto && Input.GetKeyDown(KeyCode.Mouse0)) return true;
-        if (semiAuto && Input.GetKey(KeyCode.Mouse0)) return true;
-        return false;
-
-    }
-    void Fire()
-    {
-        fireRateTimer = 0;
-        bulletSpawnPoint.LookAt(character.aimPos);
-        audioSource.PlayOneShot(gunshot);
-        for(int i = 0; i< bulletsPerShot;i++)
+        if(Input.GetMouseButtonDown(0) && Input.GetMouseButton(1))
         {
-            GameObject currentBullet = Instantiate(bullet,bulletSpawnPoint.position,bulletSpawnPoint.rotation);
-            Rigidbody rb = currentBullet.GetComponent<Rigidbody>();
-            rb.AddForce(bulletSpawnPoint.forward * bulletVelocity,ForceMode.Impulse);
+            Shoot();
+        }
+    }
+
+    // Update is called once per frame
+
+    private void Shoot()
+    {
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+        Quaternion rotation = Quaternion.identity;
+        
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 direction = hit.point - bulletSpawnPoint.position;
+            rotation = Quaternion.LookRotation(direction);
+        }
+        else
+        {
+            rotation = Quaternion.LookRotation(ray.direction);
+
         }
 
-        Debug.Log("Fire");
 
-        
+        AudioManagerSingleton.Instance.PlaySound(gunshot);
+        Instantiate(projectilePrefab, bulletSpawnPoint.position,rotation);
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * 1000);
+    }
+
+
 
 
 
 }
+

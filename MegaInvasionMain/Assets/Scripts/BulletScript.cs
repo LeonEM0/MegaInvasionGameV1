@@ -5,8 +5,8 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     [SerializeField] private float speed = 10;
-    [SerializeField] private float timeToDestroy;
-    [SerializeField] private float damage = 10;
+    [SerializeField] private float timeToDestroy = 5;
+    [SerializeField] private float damage = 25;
     
 
     float timer;
@@ -21,7 +21,8 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
 
-        transform.Translate(transform.forward * (speed * Time.deltaTime));
+        transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+       // transform.forward will always shoot in the +z axis 
     }
     /*private void OnCollisionEnter(Collision collision)
     {
@@ -31,13 +32,20 @@ public class BulletScript : MonoBehaviour
        
     }
     */
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider other)
     {
-        Enemy enemy = collider.GetComponent<Enemy>();
-        if(enemy != null)
+        IDamageable damageable = other.GetComponent<IDamageable>(); // were storing an interface in the damageable variable when is colliding with the other object
+        
+        if(damageable != null)   // if the object  clashed with an object that contains the interface the variable will store the interface
         {
-            enemy.TakeDamage(25);
-            Debug.Log(enemy.health);
+            damageable.TakeDamage(25); // if the damafeable variable is not null, it calls the takeDamage method on the damageable object 
+            //we will use this variable and this method to call takedamage and affect the objects that were hit
+            DestroyProjectile();
+        }
+
+        else if(other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Plane"))
+        {
+            DestroyProjectile();
         }
     }
 

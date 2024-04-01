@@ -7,6 +7,7 @@ public class PowerUps : MonoBehaviour
 {
     public static event Action OnCollected;
     public static int total;
+    [SerializeField] AudioClip coinsound;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class PowerUps : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioManagerSingleton.Instance.PlaySound(coinsound);
             OnCollected?.Invoke();
             Destroy(gameObject);
         }
