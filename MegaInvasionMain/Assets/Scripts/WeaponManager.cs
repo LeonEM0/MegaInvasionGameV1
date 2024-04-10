@@ -61,7 +61,7 @@ public class WeaponManager : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.yellow;
         Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * 1000);
     }
 

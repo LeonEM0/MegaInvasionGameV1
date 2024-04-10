@@ -56,13 +56,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4214223279664442192}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.14630032, y: -0.23162562, z: -0.87251186, w: -0.4045602}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.88533247, y: 0.88533247, z: 0.88533247}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4262882005358198442}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -16.608, y: -332.485, z: 126.155}
 --- !u!137 &3644350356215608958
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300000, guid: 44c4e7f330952134eae5e89e9caf1fa5, type: 3}
   m_Bones:
@@ -114,8 +114,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 7097242311885053232}
   m_AABB:
-    m_Center: {x: -0.39144102, y: 0.000000007450581, z: -0.000000011175871}
-    m_Extent: {x: 0.39144102, y: 0.07166327, z: 0.062062215}
+    m_Center: {x: -0.3913421, y: 0.000000007450581, z: -0.000000011175871}
+    m_Extent: {x: 0.3913421, y: 0.07166327, z: 0.062062215}
   m_DirtyAABB: 0
 --- !u!1 &7809580996633807850
 GameObject:
@@ -143,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7809580996633807850}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.005138435, y: -0.06306396, z: 0.98578525, w: -0.1556408}
+  m_LocalRotation: {x: 0.49589288, y: -0.69669497, z: 0.40922543, w: 0.31818384}
   m_LocalPosition: {x: 3.0104625, y: 14.795211, z: 53.042103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -151,7 +151,7 @@ Transform:
   - {fileID: 5574957773904430104}
   - {fileID: 7097242311885053232}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 7.05, y: 1.718, z: -161.95}
+  m_LocalEulerAnglesHint: {x: 62.348, y: 184.633, z: -68.081}
 --- !u!95 &5000995995973396609
 Animator:
   serializedVersion: 5
@@ -160,9 +160,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7809580996633807850}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 44c4e7f330952134eae5e89e9caf1fa5, type: 3}
-  m_Controller: {fileID: 9100000, guid: b6b052137f4ae6f45b82160f59ce9f2d, type: 2}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

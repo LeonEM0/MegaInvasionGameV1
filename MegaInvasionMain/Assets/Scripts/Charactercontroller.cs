@@ -27,7 +27,7 @@ public class SimpleCharacterController : MonoBehaviour
 
     private Rigidbody rb;
     //aiming
-    public Transform aimPos;
+   // public Transform aimPos;
     [SerializeField] float aimSmoothSpeed =20;
     [SerializeField] LayerMask aimMask;
     public float rayDistance = 30f; // variable to see the path of the ray to shoot bullets
@@ -45,7 +45,7 @@ public class SimpleCharacterController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         // vCam.m_Lens.FieldOfView = Mathf.Lerp(vCam.m_Lens.FieldOfView, currentFov, fovsmoothSpeed * Time.deltaTime);
-
+/*
         Vector2 screenCentre = new Vector2(Screen.width/2,Screen.height/2);
         Ray ray = Camera.main.ScreenPointToRay(screenCentre);
 
@@ -55,6 +55,7 @@ public class SimpleCharacterController : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.green);
 
         }
+*/
 
 
 
@@ -162,7 +163,7 @@ void MoveCharacter(float horizontal, float vertical)
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Plane"))
+        if(collision.gameObject.CompareTag("Plane"))//piso
         {
             isGrounded = true;
             animator.SetBool("IsJumpingAnim", false);
@@ -172,8 +173,9 @@ void MoveCharacter(float horizontal, float vertical)
 
         }
 
-        if (collision.gameObject.CompareTag("Trampoline"))
+        if (collision.gameObject.CompareTag("Trampoline"))//trampoline
         {
+
             isGrounded = false;
             animator.SetBool("IsJumpingAnim", true);
             animator.SetBool("IsFallingAnim", true);

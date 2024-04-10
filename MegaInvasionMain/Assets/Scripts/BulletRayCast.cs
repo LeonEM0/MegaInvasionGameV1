@@ -52,7 +52,8 @@ public class BulletRayCast : MonoBehaviour // This are the bullets for the turre
     void Shoot()
     {
 
-        GameObject bulletclone = Instantiate(projectile,spawnpoint.position,spawnpoint.rotation); // this just instantiate the bullet 
+        Quaternion rotation = Quaternion.LookRotation(player.position);
+        GameObject bulletclone = Instantiate(projectile,spawnpoint.position,rotation); // this just instantiate the bullet 
         bulletclone.GetComponent<Rigidbody>().AddForce(spawnpoint.forward * 1500); //this actually applies the force in the rigidbody
         Destroy(bulletclone, 3f);
     }
