@@ -13535,7 +13535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a1a3c9034a9d944b6242209bde6b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueParent: {fileID: 1714281268}
+  dialogueParent: {fileID: 1905574946}
   dialogueText: {fileID: 1006977699}
   option1Button: {fileID: 2136865579}
   option2Button: {fileID: 86715360}
