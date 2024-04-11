@@ -6,6 +6,7 @@ using System.IO;
 
 public class SimpleCharacterController : MonoBehaviour
 {
+    public int health = 100;
     //camera
     public CinemachineVirtualCamera vCam;
     public float adsFov = 40;
@@ -92,10 +93,13 @@ public class SimpleCharacterController : MonoBehaviour
     {
         if (other.tag == "PowerUp")
         {
+            int speedboost = 10;
             //isBoosting = true;
-            speed = 100;
+            speed = speed + speedboost;
+            Debug.Log(speed);
 
         }
+        TakeDamage(other);
     }
 
 void MoveCharacter(float horizontal, float vertical)
@@ -116,13 +120,19 @@ void MoveCharacter(float horizontal, float vertical)
             rb.MovePosition(transform.position + transform.TransformDirection(movement));
 
         }
-       
 
-      
+
+
     }
-  
- 
-    void RotateCharacter(float horizontal)
+    void TakeDamage(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Debug.Log(health);
+        }
+    }
+
+void RotateCharacter(float horizontal)
     {
         float rotation = horizontal * rotationSpeed * Time.deltaTime;
         Quaternion deltaRotation = Quaternion.Euler(Vector3.up * rotation);
@@ -182,6 +192,7 @@ void MoveCharacter(float horizontal, float vertical)
             animator.SetBool("IsGroundedAnim", true);
 
         }
+     
 
 
 
@@ -194,16 +205,19 @@ void MoveCharacter(float horizontal, float vertical)
          }
         */
     }
-   /* private void OnCollisionExit(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Trampoline"))
-        {
-            animator.SetBool("IsJumpingAnim",false);
-            animator.SetBool("IsFallingAnim", false);
-            animator.SetBool("IsGroundedAnim", false);
-        }
-    }
-   */
+
+    
+
+    /* private void OnCollisionExit(Collision collision)
+     {
+         if(collision.gameObject.CompareTag("Trampoline"))
+         {
+             animator.SetBool("IsJumpingAnim",false);
+             animator.SetBool("IsFallingAnim", false);
+             animator.SetBool("IsGroundedAnim", false);
+         }
+     }
+    */
 
 
 
