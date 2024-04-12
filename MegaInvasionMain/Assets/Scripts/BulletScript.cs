@@ -43,10 +43,11 @@ public class BulletScript : MonoBehaviour
             DestroyProjectile();
         }
 
-        else if(other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Plane"))
+      /*  else if(other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Plane"))
         {
             DestroyProjectile();
         }
+      */
     }
 
    public void DestroyProjectile()

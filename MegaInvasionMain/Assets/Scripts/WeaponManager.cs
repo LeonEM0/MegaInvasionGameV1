@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
 
     [Header("Bullet Properties")]
     [SerializeField] GameObject projectilePrefab;
+    [SerializeField] GameObject projectilePrefab2;
     [SerializeField] Transform bulletSpawnPoint;
     SimpleCharacterController character;
 
@@ -44,7 +45,7 @@ public class WeaponManager : MonoBehaviour
         RaycastHit hit;
         Quaternion rotation = Quaternion.identity;
         
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && !hit.collider.CompareTag("Collectable") &&!hit.collider.CompareTag("Bullet"))
         {
             Vector3 direction = hit.point - bulletSpawnPoint.position;
             rotation = Quaternion.LookRotation(direction);
