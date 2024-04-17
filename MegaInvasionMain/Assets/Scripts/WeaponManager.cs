@@ -6,17 +6,23 @@ using UnityEngine.InputSystem;
 public class WeaponManager : MonoBehaviour
 {
 
-    
+
 
     [Header("Bullet Properties")]
+    List<GameObject> projectiles = new List<GameObject>();
+    public int bulletnumber;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] GameObject projectilePrefab2;
+    [SerializeField] GameObject projectilePrefab3;
+    [SerializeField] GameObject shield;
+
     [SerializeField] Transform bulletSpawnPoint;
     SimpleCharacterController character;
 
 
     [Header("audio")] 
    [SerializeField] AudioClip gunshot;
+   [SerializeField] AudioClip shieldsound;
     [SerializeField] AudioSource audioSource;
 
     private Ray ray; 
@@ -26,10 +32,25 @@ public class WeaponManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         
         character = GetComponentInParent<SimpleCharacterController>();
+
+        projectiles.Add(projectilePrefab);
+        projectiles.Add(projectilePrefab2);
+        projectiles.Add(projectilePrefab3);
+
         
     }
     void Update()
-    {
+    {   
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            ChangeTypeofBullet();
+        }
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            AudioManagerSingleton.Instance.PlaySound(shieldsound);
+            ActivateShield(Quaternion.identity);
+        }    
+
         if(Input.GetMouseButtonDown(0) && Input.GetMouseButton(1))
         {
             Shoot();
@@ -55,10 +76,13 @@ public class WeaponManager : MonoBehaviour
             rotation = Quaternion.LookRotation(ray.direction);
 
         }
-
-
+       
         AudioManagerSingleton.Instance.PlaySound(gunshot);
-        Instantiate(projectilePrefab, bulletSpawnPoint.position,rotation);
+
+        Instantiate(projectiles[0], bulletSpawnPoint.position, rotation);
+
+
+
     }
     private void OnDrawGizmos()
     {
@@ -66,7 +90,28 @@ public class WeaponManager : MonoBehaviour
         Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * 1000);
     }
 
+    public void ChangeTypeofBullet()
+    {
+       
+        bulletnumber++;
 
+
+        if (bulletnumber > 2)
+        {
+            bulletnumber = 0;
+            projectiles[0] = projectilePrefab;
+        }
+        else
+        {
+            projectiles[0] = projectiles[bulletnumber]; 
+        }
+    }
+
+    public void ActivateShield(Quaternion rotation)
+    {
+        Instantiate(shield, bulletSpawnPoint.position, rotation);
+
+    }
 
 
 

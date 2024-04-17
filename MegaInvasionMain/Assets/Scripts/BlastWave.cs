@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class BlastWave : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class BlastWave : MonoBehaviour
     public float maxRadius;
     public float speed;
     public float startWidth;
+    public GameObject wave_particles;
+    public GameObject wave_particles2;
+    public Transform player;
+    public AudioClip powerupsound;
+    public AudioClip powerupsound2reigan;
 
     private LineRenderer lineRenderer;
 
@@ -19,11 +25,18 @@ public class BlastWave : MonoBehaviour
     }
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        if(Input.GetKeyDown(KeyCode.E))
         {
+            AudioManagerSingleton.Instance.PlaySound(powerupsound2reigan);
+            AudioManagerSingleton.Instance.PlaySound(powerupsound);
             StartCoroutine(Blast());
+
+            StartCoroutine(InstatiateWithDelay());
+            
+            Debug.Log("explosion");
         }
     }
+   
 
     private IEnumerator Blast()
     {
@@ -32,9 +45,17 @@ public class BlastWave : MonoBehaviour
         {
             currentRadius += Time.deltaTime * speed;
             Draw(currentRadius);
-            yield return null;
+            yield return 5f;
            
         }
+
+    }
+    IEnumerator InstatiateWithDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(wave_particles, player.transform.position, this.transform.rotation);
+        Instantiate(wave_particles2, player.transform.position, this.transform.rotation);
+
 
     }
 

@@ -17,7 +17,7 @@ public class SimpleCharacterController : MonoBehaviour
     public float speed = 150f; //Movement speed
     public float runspeed = 50f;
     public float currentspeed;
-    public float rotationSpeed = 200f; //Rotation speed
+    public float rotationSpeed = 20f; //Rotation speed
     public float jumpForce = 200f;
     [SerializeField] Animator animator;
     public bool isJumping = false;
@@ -115,15 +115,19 @@ void MoveCharacter(float horizontal, float vertical)
         }
         else
         {
-            
+            RotateCharacter(horizontal);
             Vector3 movement = new Vector3(horizontal, 0f, vertical) * speed * Time.deltaTime;
             rb.MovePosition(transform.position + transform.TransformDirection(movement));
 
         }
+       
+      //  Debug.Log("HORIZONTAL"+horizontal);
+       // Debug.Log("VERTICAL"+vertical);
 
 
 
     }
+
     void TakeDamage(Collider other)
     {
         if (other.tag == "Enemy")
@@ -132,17 +136,33 @@ void MoveCharacter(float horizontal, float vertical)
         }
     }
 
-void RotateCharacter(float horizontal)
+
+
+    void RotateCharacter(float vertical)
     {
-        float rotation = horizontal * rotationSpeed * Time.deltaTime;
-        Quaternion deltaRotation = Quaternion.Euler(Vector3.up * rotation);
-        rb.MoveRotation(rb.rotation * deltaRotation);
+        float rotation = vertical;
+
+        // Check if the S key is pressed
+
+
+        if (Input.GetKey(KeyCode.F) && Input.GetKeyDown(KeyCode.S))
+        {
+         
+         
+        
+                // Rotate 180 degrees
+                rotation = 180f;
+                this.transform.Rotate(transform.rotation.x, rotation, transform.rotation.z);
+           
+            
+        }
+
     }
 
     //void Jump()
     //{
     //    rb.AddForce(Vector2.up * jumpForce * 1.5f);
-        
+
     //}
 
     public void UpdateAnimation()
