@@ -93,10 +93,7 @@ public class SimpleCharacterController : MonoBehaviour
     {
         if (other.tag == "PowerUp")
         {
-            int speedboost = 10;
-            //isBoosting = true;
-            speed = speed + speedboost;
-            Debug.Log(speed);
+            Debug.Log("collectablepicked");
 
         }
         TakeDamage(other);
