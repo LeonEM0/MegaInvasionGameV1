@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour,IDamageable
 {
     private int health = 50;
+    public int damage = 10;
     BulletScript bulletScript;
     [SerializeField] AudioClip deathsound;
     [SerializeField] AudioClip bulletimpactsound;

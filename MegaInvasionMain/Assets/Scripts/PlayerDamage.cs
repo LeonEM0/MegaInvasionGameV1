@@ -6,8 +6,12 @@ public class PlayerDamage : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    private bool isDead;
 
     public HealthBar healthBar;
+    public GameOverScreen deathScreen;
+
+   
 
 
     void Start()
@@ -18,15 +22,28 @@ public class PlayerDamage : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightShift))
+        if(currentHealth <= 0 && !isDead)
         {
-            TakeDamage(20);
-        }    
+            isDead = true;
+            deathScreen.gameOver();
+        }  
     }
 
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            TakeDamage(20);
+        }
+        if(other.tag == "Bullet")
+        {
+            TakeDamage(5);
+        }
     }
 }

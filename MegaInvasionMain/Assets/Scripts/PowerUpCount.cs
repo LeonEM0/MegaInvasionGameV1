@@ -14,7 +14,14 @@ public class PowerUpCount : MonoBehaviour
 
     private void Start()
     {
-        UpdateCount();  
+        if (PowerUps.total >= 12)
+        {
+            PowerUps.total = 12;
+        }
+        else
+        {
+            UpdateCount();
+        }
     }
 
     void OnEnable()
