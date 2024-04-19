@@ -20,15 +20,19 @@ public class Enemy : MonoBehaviour,IDamageable
         health -= damageAmount;
         Debug.Log(health);
         AudioManagerSingleton.Instance.PlaySound(bulletimpactsound);
-        Instantiate(impact_explosion, this.transform.position, this.transform.rotation);
+        //Instantiate(impact_explosion, this.transform.position, this.transform.rotation);
 
         if (health <= 0)
         {
             AudioManagerSingleton.Instance.PlaySound(deathsound);
-           
-            Instantiate(death_explosion, this.transform.position, this.transform.rotation);
-            Destroy(gameObject); // Destroy the enemy if health drops to or below 0
+            GameObject particle1 = Instantiate(death_explosion, this.transform.position, this.transform.rotation); // you need to save the instatiation in variable of typeGamobject to then destroy it 
+            GameObject particle2 = Instantiate(impact_explosion, this.transform.position, this.transform.rotation);
+            Destroy(this.gameObject); // Destroy the enemy if health drops to or below 0
             Debug.Log("EnemKilled");
+            // Destroy(impact_explosion, 1f);
+            //Destroy(death_explosion, 1f);
+            Destroy(particle1, 1);
+            Destroy(particle2, 1);
 
         }
     }

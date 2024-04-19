@@ -32,6 +32,8 @@ public class BlastWave : MonoBehaviour
             StartCoroutine(Blast());
 
             StartCoroutine(InstatiateWithDelay());
+
+            
             
             Debug.Log("explosion");
         }
@@ -52,9 +54,13 @@ public class BlastWave : MonoBehaviour
     }
     IEnumerator InstatiateWithDelay()
     {
+        GameObject aura1 = Instantiate(wave_particles, player.transform.position, this.transform.rotation);
+        GameObject aura2 = Instantiate(wave_particles2, player.transform.position, this.transform.rotation);
         yield return new WaitForSeconds(0.1f);
-        Instantiate(wave_particles, player.transform.position, this.transform.rotation);
-        Instantiate(wave_particles2, player.transform.position, this.transform.rotation);
+
+        Destroy(aura1, 2f);
+        Destroy(aura2, 2f);
+         
 
 
     }

@@ -10,6 +10,7 @@ public class PlayerDamage : MonoBehaviour
 
     public HealthBar healthBar;
     public GameOverScreen deathScreen;
+    public AudioClip playerdamagedsound;
 
    
 
@@ -33,6 +34,8 @@ public class PlayerDamage : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        AudioManagerSingleton.Instance.PlaySound(playerdamagedsound);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,10 +43,12 @@ public class PlayerDamage : MonoBehaviour
         if(other.tag == "Enemy")
         {
             TakeDamage(20);
+            
         }
         if(other.tag == "Bullet")
         {
             TakeDamage(5);
+           
         }
     }
 }
