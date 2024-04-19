@@ -8889,8 +8889,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 78c6532ccd4919f4eaa71e91f200ba5b, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 78c6532ccd4919f4eaa71e91f200ba5b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14459,7 +14459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 5a94e0ddcf6328345b7ca6644a5352c8, type: 2}
+  m_Texture: {fileID: 8400000, guid: e2f734e26f9a77f43b4032ba341ee3f1, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0

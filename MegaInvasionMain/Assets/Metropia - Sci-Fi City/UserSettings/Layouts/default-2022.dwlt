@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357.3334
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 117
+  controlID: 109
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -444,23 +444,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 8cacffff
-      m_LastClickedID: -21364
-      m_ExpandedIDs: 40fbffffb044000066470000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 40fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Icon
-        m_OriginalName: Icon
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -21364
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 9}
       m_SearchString: 
@@ -579,7 +579,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 40590000
     m_LastClickedID: 22848
-    m_ExpandedIDs: 00000000624e0000
+    m_ExpandedIDs: 00000000b4440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -607,7 +607,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000624e0000
+    m_ExpandedIDs: ffffffff00000000b4440000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1219,11 +1219,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.4332184, y: 0.05051649, z: -0.024327794, w: -0.89956236}
     speed: 2
-    m_Value: {x: -0.43051034, y: 0.05058838, z: -0.02417571, w: -0.9008425}
+    m_Value: {x: -0.4332184, y: 0.050516486, z: -0.024327792, w: -0.89956236}
   m_Size:
     m_Target: 2.1121144
     speed: 2
-    m_Value: 2.021162
+    m_Value: 2.1121144
   m_Ortho:
     m_Target: 0
     speed: 2
