@@ -101,10 +101,10 @@ public class SimpleCharacterController : MonoBehaviour
 
 void MoveCharacter(float horizontal, float vertical)
     {
-       
 
 
-        if(Input.GetKey(KeyCode.LeftShift))
+
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             currentspeed = speed + runspeed;
             Vector3 movement = new Vector3(horizontal, 0f, vertical) * currentspeed * Time.deltaTime;
@@ -117,9 +117,9 @@ void MoveCharacter(float horizontal, float vertical)
             rb.MovePosition(transform.position + transform.TransformDirection(movement));
 
         }
-       
-      //  Debug.Log("HORIZONTAL"+horizontal);
-       // Debug.Log("VERTICAL"+vertical);
+
+        //  Debug.Log("HORIZONTAL"+horizontal);
+        // Debug.Log("VERTICAL"+vertical);
 
 
 

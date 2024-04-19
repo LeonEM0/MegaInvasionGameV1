@@ -20,7 +20,7 @@ public class PowerUps : MonoBehaviour
         transform.localRotation = Quaternion.Euler(90f, Time.time * 100f, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
+     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

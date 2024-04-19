@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
@@ -12,9 +10,6 @@ public class PlayerDamage : MonoBehaviour
     public GameOverScreen deathScreen;
     public AudioClip playerdamagedsound;
 
-   
-
-
     void Start()
     {
         currentHealth = maxHealth;
@@ -23,32 +18,30 @@ public class PlayerDamage : MonoBehaviour
 
     void Update()
     {
-        if(currentHealth <= 0 && !isDead)
+        if (currentHealth <= 0 && !isDead)
         {
             isDead = true;
             deathScreen.gameOver();
-        }  
+            Destroy(this);
+        }
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         AudioManagerSingleton.Instance.PlaySound(playerdamagedsound);
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
             TakeDamage(20);
-            
         }
-        if(other.tag == "Bullet")
+        if (other.tag == "Bullet")
         {
             TakeDamage(5);
-           
         }
     }
 }
